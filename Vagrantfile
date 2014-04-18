@@ -73,10 +73,10 @@ Vagrant.configure("2") do |config|
   #
 
 
-  #config.vm.provision :puppet, :options => '--modulepath="/vagrant/puppet/modules":"/vagrant/puppet/roles"' do |puppet|
-     #puppet.manifests_path = "./puppet/manifests"
-     #puppet.manifest_file  = "app.pp"
-  #end
+  config.vm.provision :puppet, :options => '--modulepath="/vagrant/puppet/modules":"/vagrant/puppet/roles"' do |puppet|
+     puppet.manifests_path = "./puppet/manifests"
+     puppet.manifest_file  = "app.pp"
+  end
 
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
@@ -117,7 +117,7 @@ Vagrant.configure("2") do |config|
   #
   #   chef.validation_client_name = "ORGNAME-validator"
   
-  config.vm.provision "shell", path: "./start.sh"
+  #config.vm.provision "shell", path: "./start.sh"
   #config.vm.provision "shell", inline: "echo hello"
 
 end
