@@ -12,13 +12,13 @@ Vagrant.configure("2") do |config|
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
-  config.vm.hostname = "treasure2013.local"
+  config.vm.hostname = "VagrantVOYAGE-Challenge"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network :forwarded_port, guest: 80, host: 8080
-  config.vm.network :private_network, ip: "192.168.56.110" 
+  config.vm.network :private_network, ip: "192.168.56.201"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider :virtualbox do |vb|
-    vb.name = "Treasure2013"
+    vb.name = "VagrantVOYAGE-Challenge"
   end
 
   #   # Don't boot with headless mode
@@ -71,10 +71,13 @@ Vagrant.configure("2") do |config|
   # #               Managed by Puppet.\n"
   # # }
   #
+
+
   config.vm.provision :puppet, :options => '--modulepath="/vagrant/puppet/modules":"/vagrant/puppet/roles"' do |puppet|
      puppet.manifests_path = "./puppet/manifests"
      puppet.manifest_file  = "app.pp"
   end
+
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
@@ -113,4 +116,8 @@ Vagrant.configure("2") do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+  
+  #config.vm.provision "shell", path: "./start.sh"
+  #config.vm.provision "shell", inline: "echo hello"
+
 end
